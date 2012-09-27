@@ -64,8 +64,8 @@ public class TokenManager extends HttpServlet {
 		connection.setRequestProperty("Accept","application/json");
 		String body="client_id=3b13b84938eff99458bed9227b559dcc&"+
 				"client_secret=614a87f363ca651e&"+
-				"grant_type=authorization_code&"+
-				"code="+code;
+				"grant_type=client_credentials&"+
+				"scope="+"SMS";
 		connection.setRequestProperty("Content-length",String.valueOf(body.length())); 
 		//Send request      
 		DataOutputStream wr = new DataOutputStream (connection.getOutputStream ());
