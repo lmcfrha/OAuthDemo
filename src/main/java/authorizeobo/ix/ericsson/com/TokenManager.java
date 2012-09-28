@@ -89,9 +89,10 @@ public class TokenManager extends HttpServlet {
 		connection.setReadTimeout(10000);
 		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		String inputLine;
-		while ((inputLine = in.readLine()) != null) 
-		out.println(inputLine);
-		System.out.println(">>>>>>>>>> Resp Body:"+ inputLine); 
+		while ((inputLine = in.readLine()) != null) {
+			out.println(inputLine);
+			System.out.println(">>>>>>>>>> Resp Body:"+ inputLine); 
+		}
 		in.close();
 		out.flush();
 		out.close();
