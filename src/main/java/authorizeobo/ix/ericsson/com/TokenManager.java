@@ -91,6 +91,7 @@ public class TokenManager extends HttpServlet {
 		String inputLine;
 		while ((inputLine = in.readLine()) != null) 
 		out.println(inputLine);
+		System.out.println(">>>>>>>>>> Resp Body:"+ inputLine); 
 		in.close();
 		out.flush();
 		out.close();
