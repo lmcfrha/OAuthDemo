@@ -62,10 +62,19 @@ public class TokenManager extends HttpServlet {
 		connection.setRequestProperty("Host","api.att.com");
 		connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
 		connection.setRequestProperty("Accept","application/json");
-		String body="client_id=3b13b84938eff99458bed9227b559dcc&"+
+		String body=null;
+		if (code == null) {
+			body="client_id=3b13b84938eff99458bed9227b559dcc&"+
 				"client_secret=614a87f363ca651e&"+
 				"grant_type=client_credentials&"+
 				"scope="+"SMS";
+		} else {
+			body="client_id=3b13b84938eff99458bed9227b559dcc&"+
+					"client_secret=614a87f363ca651e&"+
+					"grant_type=authorization_code&"+
+					"code="+code;	
+		}
+		System.out.println(">>>>>>>>>> Getting a token: "+body); 
 		connection.setRequestProperty("Content-length",String.valueOf(body.length())); 
 		//Send request      
 		DataOutputStream wr = new DataOutputStream (connection.getOutputStream ());
