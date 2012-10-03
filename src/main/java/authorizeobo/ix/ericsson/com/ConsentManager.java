@@ -41,7 +41,7 @@ public class ConsentManager extends HttpServlet {
 		String url = "https://api.att.com/oauth/authorize?client_id=3b13b84938eff99458bed9227b559dcc&scope=TL&redirect_uri=http://authorizeobo-ericssonsandbox.rhcloud.com/authorized?mdn="
 		        +request.getParameter("mdn")
 		        +"&applicationid="
-		        +request.getParameter("applictionId");
+		        +request.getParameter("applicationId");
 	    if (url != null)
 	    {
 	      response.sendRedirect(url);
