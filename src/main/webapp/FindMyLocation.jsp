@@ -22,8 +22,8 @@ AT&T Subscriber, click here</a><br><br>
 </FORM>
 </div>
 <div id="map">
-<% if (request.getAttribute("latitude")!=null && request.getAttribute("longitude")!=null) {%>
-<iframe width="600" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?q=<%=request.getAttribute("latitude")%>+<%=request.getAttribute("longitude")%>&output=embed"></iframe>
+<% if (request.getParameter("latitude")!=null && request.getParameter("longitude")!=null) {%>
+<iframe width="600" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?q=<%=request.getParameter("latitude")%>+<%=request.getParameter("longitude")%>&output=embed"></iframe>
 <%}%>
 </div>
 </body>
