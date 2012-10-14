@@ -48,7 +48,7 @@ public class TokenManager extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		 
-
+		String access_token=null;
 		
 		String code=request.getParameter("code");
 		String mdn=request.getParameter("mdn");
@@ -94,14 +94,14 @@ public class TokenManager extends HttpServlet {
 			System.out.println(">>>>>>>>>> Resp Body:"+ inputLine); 
 			if (inputLine.contains("access_token")) {
 				String[] access_token_AVP = inputLine.split(":");
-				String access_token = access_token_AVP[1];
-				System.out.println(">>>>>>>>>> Resp access_token:"+access_token); 
-				
+				access_token = access_token_AVP[1]; 
 			}
 		}
 		in.close();
 		out.flush();
 		out.close();
+		
+		if (access_token != null) System.out.println(">>>>>>>>>> Resp access_token:"+access_token);
 		
 	}
 
