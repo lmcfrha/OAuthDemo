@@ -116,10 +116,25 @@ public class TokenManager extends HttpServlet {
 			connection1.setRequestProperty("Accept","application/json");
 
 			System.out.println(">>>>>>>>>> Getting location with the access token"); 
+			System.out.println("           "+locationURL.toString());
+			System.out.println("           "+connection1.toString());
 //			connection1.setRequestProperty("Content-length",String.valueOf(body.length())); 
 			//Send request      
 			DataOutputStream wr1 = new DataOutputStream (connection1.getOutputStream ());
+			wr1.writeBytes (body);      
+			wr1.flush ();      
+			wr1.close ();
 			
+			System.out.println(">>>>>>>>>> Resp Code:"+connection1.getResponseCode()); 
+			System.out.println(">>>>>>>>>> Resp Message:"+ connection1.getResponseMessage()); 
+
+			connection1.setReadTimeout(10000);
+			BufferedReader in1 = new BufferedReader(new InputStreamReader(connection1.getInputStream()));
+			String inputLine1;
+			while ((inputLine1 = in1.readLine()) != null) {
+				out.println(inputLine1);
+				System.out.println(">>>>>>>>>> Resp Body:"+ inputLine1); 
+			}			
 		}
 		
 	}
