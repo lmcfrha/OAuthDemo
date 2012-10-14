@@ -92,6 +92,12 @@ public class TokenManager extends HttpServlet {
 		while ((inputLine = in.readLine()) != null) {
 			out.println(inputLine);
 			System.out.println(">>>>>>>>>> Resp Body:"+ inputLine); 
+			if (inputLine.contains("access_token")) {
+				String[] access_token_AVP = inputLine.split(":");
+				String access_token = access_token_AVP[1];
+				System.out.println(">>>>>>>>>> Resp access_token:"+access_token); 
+				
+			}
 		}
 		in.close();
 		out.flush();
