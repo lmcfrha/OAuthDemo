@@ -42,7 +42,7 @@ Select your operator button, click on the Get Location Button. and you'll get yo
 </div>
 <div id="map">
 <% if (request.getParameter("latitude")!=null && request.getParameter("longitude")!=null) {%>
-<iframe width="600" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?q=<%=request.getParameter("latitude")%>+<%=request.getParameter("longitude")%>&output=embed"></iframe>
+<iframe width="600" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?q=<%=request.getParameter("latitude")%>+<%=request.getParameter("longitude")%>&zoom=14&output=embed"></iframe>
 <%}%>
 </div>
 </body>
