@@ -8,7 +8,7 @@
 <title>FIND MY LOCATION APPLICATION AKA authorizeobo</title>
 </head>
 <%
-if (request.getParameter("operator")!=null)
+if (request.getParameter("operator").equals("ATT"))
 response.sendRedirect("https://api.att.com/oauth/authorize?client_id=3b13b84938eff99458bed9227b559dcc&scope=TL&redirect_uri=http://authorizeobo-ericssonsandbox.rhcloud.com/authorized");
 %>
 
@@ -23,7 +23,7 @@ In OAuth terminology: <br>
 Look, I don't even ask you your name of phone number, just click your operator button and you'll get your phone lat/long (for now, I only have an OAuth relationship with AT&T, so this application is limited to AT&T subscriber):<br><br>
 <form action="http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp" method="GET"></form><a href="https://api.att.com/oauth/authorize?client_id=3b13b84938eff99458bed9227b559dcc&scope=TL&redirect_uri=http://authorizeobo-ericssonsandbox.rhcloud.com/authorized">
 AT&T Subscriber, click here</a><br><br>
-<INPUT type="radio" name="operator" value="AT&T">AT&T<BR>
+<INPUT type="radio" name="operator" value="ATT">AT&T<BR>
 <INPUT type="radio" name="operator" value="someOperator">OperatorX<BR>
 <br>
 <INPUT type="submit" name="submit" value="Get Location"><br><br>
