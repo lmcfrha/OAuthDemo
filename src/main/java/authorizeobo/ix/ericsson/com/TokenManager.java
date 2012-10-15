@@ -51,9 +51,9 @@ public class TokenManager extends HttpServlet {
 		String path = request.getContextPath();
 		String query = request.getQueryString();
 		String pathinfo =request.getPathInfo();
-		if (path != null) System.out.println(">>>>>>>>>> Redirected back to the App: Contect Path - "+path); 
-		if (query != null) System.out.println(">>>>>>>>>> Redirected back to the App: Query String - "+query);  
-		if (pathinfo != null) System.out.println(">>>>>>>>>> Redirected back to the App: Path Info    - "+pathinfo);  
+		if (path != null) System.out.println(">>>>>>>>>> Redirected back to the App with Contect Path - "+path); 
+		if (query != null) System.out.println(">>>>>>>>>> Redirected back to the App with Query String - "+query);  
+		if (pathinfo != null) System.out.println(">>>>>>>>>> Redirected back to the App with Path Info    - "+pathinfo);  
 		
 		String access_token=null;
 		
@@ -112,15 +112,15 @@ public class TokenManager extends HttpServlet {
 			System.out.println(">>>>>>>>>> Resp access_token:"+access_token);
 			
 			// Get location now that we have a token:
-			URL locationURL = new URL("https://api.att.com/2/devices/location?requestedAccuracy=10000"+ "&access_token=" + access_token);
+			URL locationURL = new URL("https://api.att.com/2/devices/location?requestedAccuracy=10000");
 			HttpsURLConnection connection1 = (HttpsURLConnection) locationURL.openConnection();
 			connection1.setDoOutput(true); 
 			connection1.setDoInput(true);
 			connection1.setRequestMethod("GET"); 
 			connection1.setRequestProperty("Authorization","Bearer "+access_token);
-			connection1.setRequestProperty("Host","api.att.com");
+//			connection1.setRequestProperty("Host","api.att.com");
 //			connection1.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
-			connection1.setRequestProperty("Accept","application/json");
+//			connection1.setRequestProperty("Accept","application/json");
 
 			System.out.println(">>>>>>>>>> Getting location with the access token"); 
 			System.out.println("           "+locationURL.toString());
