@@ -8,7 +8,7 @@
 <title>FIND MY LOCATION APPLICATION AKA authorizeobo</title>
 </head>
 <%
-if (request.getParameter("operator")=="AT&T")
+if (request.getParameter("operator")!=null)
 response.sendRedirect("https://api.att.com/oauth/authorize?client_id=3b13b84938eff99458bed9227b559dcc&scope=TL&redirect_uri=http://authorizeobo-ericssonsandbox.rhcloud.com/authorized");
 %>
 
