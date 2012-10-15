@@ -7,14 +7,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>FIND MY LOCATION APPLICATION AKA authorizeobo</title>
 </head>
+
+
+<body>
 <%
 if (request.getParameter("operator")!=null) {
+%>
+The operator selected is <%=request.getParameter("operator")%>
+<%
 	if (request.getParameter("operator").equals("ATT")) response.sendRedirect("https://api.att.com/oauth/authorize?client_id=3b13b84938eff99458bed9227b559dcc&scope=TL&redirect_uri=http://authorizeobo-ericssonsandbox.rhcloud.com/authorized");
     return;
 }
 %>
-
-<body>
 AUTHORIZEOBO APPLICATION: it's about finding your LAT/LONG.<br>
 <br><div id="carrierSelection">
 In OAuth terminology: <br>
