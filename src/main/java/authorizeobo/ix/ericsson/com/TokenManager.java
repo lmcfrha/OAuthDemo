@@ -109,10 +109,10 @@ public class TokenManager extends HttpServlet {
 		out.close();
 		
 		if (access_token != null) {
-			System.out.println(">>>>>>>>>> Resp access_token:"+access_token);
+			System.out.println(">>>>>>>>>> Resp access_token used in API request:"+access_token);
 			
 			// Get location now that we have a token:
-			URL locationURL = new URL("https://api.att.com/2/devices/location?requestedAccuracy=10000");
+			URL locationURL = new URL("https://api.att.com/2/devices/location?requestedAccuracy=1000");
 			HttpsURLConnection connection1 = (HttpsURLConnection) locationURL.openConnection();
 			connection1.setDoOutput(true); 
 			connection1.setDoInput(true);
@@ -155,8 +155,6 @@ public class TokenManager extends HttpServlet {
 				System.out.println(">>>>>>>>>> Resp Body:"+ inputLine1);
 				System.out.println(">>>>>>>>>> Now, redirecting to the JSP page: http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude);
 			}
-			latitude="33.0";
-			longitude="22.0";
 			if (latitude!=null && longitude!=null) {
 				String url = "http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude;
 			    response.sendRedirect(url);
