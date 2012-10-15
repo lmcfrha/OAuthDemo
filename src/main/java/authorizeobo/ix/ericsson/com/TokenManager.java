@@ -45,9 +45,16 @@ public class TokenManager extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// At the end of the Authorization process from ATT, the resource owner is redirected here, with the auth code.
 
+		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		 
+		String path = request.getContextPath();
+		String query = request.getQueryString();
+		String pathinfo =request.getPathInfo();
+		if (path != null) System.out.println(">>>>>>>>>> Redirected back to the App: Contect Path - "+path); 
+		if (query != null) System.out.println(">>>>>>>>>> Redirected back to the App: Query String - "+query);  
+		if (pathinfo != null) System.out.println(">>>>>>>>>> Redirected back to the App: Path Info    - "+pathinfo);  
+		
 		String access_token=null;
 		
 		String code=request.getParameter("code");
