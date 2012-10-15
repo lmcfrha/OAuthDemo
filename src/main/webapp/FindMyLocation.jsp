@@ -7,6 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>FIND MY LOCATION APPLICATION AKA authorizeobo</title>
 </head>
+<%
+if (request.getParameter("operator")=="AT&T")
+response.sendRedirect("https://api.att.com/oauth/authorize?client_id=3b13b84938eff99458bed9227b559dcc&scope=TL&redirect_uri=http://authorizeobo-ericssonsandbox.rhcloud.com/authorized");
+%>
+
 <body>
 AUTHORIZEOBO APPLICATION: it's about finding your LAT/LONG.<br>
 <br><div id="carrierSelection">
@@ -16,10 +21,12 @@ In OAuth terminology: <br>
 - AT&T is the RESOURCE SERVER: it delivers the resource (here the LAT/LONG information of the resource owner)to the client (once authorization of the resource owner has been granted)<br>
 <br>
 Look, I don't even ask you your name of phone number, just click your operator button and you'll get your phone lat/long (for now, I only have an OAuth relationship with AT&T, so this application is limited to AT&T subscriber):<br><br>
-<a href="https://api.att.com/oauth/authorize?client_id=3b13b84938eff99458bed9227b559dcc&scope=TL&redirect_uri=http://authorizeobo-ericssonsandbox.rhcloud.com/authorized">
+<form action="http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp" method="GET"></form><a href="https://api.att.com/oauth/authorize?client_id=3b13b84938eff99458bed9227b559dcc&scope=TL&redirect_uri=http://authorizeobo-ericssonsandbox.rhcloud.com/authorized">
 AT&T Subscriber, click here</a><br><br>
-<BUTTON name="Operator">OperatorX Subscriber, click here</button><br>
-</FORM>
+<INPUT type="radio" name="operator" value="AT&T">AT&T<BR>
+<INPUT type="radio" name="operator" value="someOperator">OperatorX<BR>
+<br>
+<INPUT type="submit" name="submit" value="Get Location"><br><br>
 </div>
 <div id="map">
 <% if (request.getParameter("latitude")!=null && request.getParameter("longitude")!=null) {%>
