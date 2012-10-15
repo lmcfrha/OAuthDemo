@@ -104,7 +104,7 @@ public class TokenManager extends HttpServlet {
 		if (access_token != null) {
 			System.out.println(">>>>>>>>>> Resp access_token:"+access_token);
 			
-			// Get location:
+			// Get location now that we have a token:
 			URL locationURL = new URL("https://api.att.com/2/devices/location?requestedAccuracy=10000"+ "&access_token=" + access_token);
 			HttpsURLConnection connection1 = (HttpsURLConnection) locationURL.openConnection();
 			connection1.setDoOutput(true); 
@@ -131,10 +131,32 @@ public class TokenManager extends HttpServlet {
 			connection1.setReadTimeout(10000);
 			BufferedReader in1 = new BufferedReader(new InputStreamReader(connection1.getInputStream()));
 			String inputLine1;
+			String latitude=null;
+			String longitude=null;
 			while ((inputLine1 = in1.readLine()) != null) {
 				out.println(inputLine1);
-				System.out.println(">>>>>>>>>> Resp Body:"+ inputLine1); 
-			}			
+				if (inputLine1.contains("latitude")) {
+					int start = inputLine1.indexOf("<latitude>")+10;
+					int end = inputLine1.indexOf("</latitude>")-1;
+					latitude = inputLine1.substring(start, end);
+				}
+				if (inputLine1.contains("longitude")) {
+					int start = inputLine1.indexOf("<longitude>")+11;
+					int end = inputLine1.indexOf("</longitude>")-1;
+					longitude = inputLine1.substring(start, end);					
+				}				
+				System.out.println(">>>>>>>>>> Resp Body:"+ inputLine1);
+				System.out.println(">>>>>>>>>> Now, redirecting to the JSP page: http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude);
+			}
+			latitude="33.0";
+			longitude="22.0";
+			if (latitude!=null && longitude!=null) {
+				String url = "http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude;
+			    response.sendRedirect(url);
+
+			}				
+				
+			
 		}
 		
 	}

@@ -36,6 +36,9 @@ Select your operator button, click on the Get Location Button. and you'll get yo
 <br>
 <INPUT type="submit" name="submit" value="Get Location">
 </form><br><br>
+<a href=https://devconnect-api.att.com/docs>ATT developer APIs' Doc</a><br>
+<a href=http://lprod.code-api-att.com:8080/tl-R2-1-0/TL.jsp>ATT Location sample app</a><br>
+<a href=https://gist.github.com/3125770>ATT Location sample app code</a>
 </div>
 <div id="map">
 <% if (request.getParameter("latitude")!=null && request.getParameter("longitude")!=null) {%>
