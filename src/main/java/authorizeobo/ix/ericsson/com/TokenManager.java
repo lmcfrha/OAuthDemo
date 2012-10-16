@@ -114,25 +114,14 @@ public class TokenManager extends HttpServlet {
 			// Get location now that we have a token:
 			URL locationURL = new URL("https://api.att.com/2/devices/location?requestedAccuracy=1000");
 			HttpsURLConnection connection1 = (HttpsURLConnection) locationURL.openConnection();
-//			connection1.setDoOutput(true); 
-//			connection1.setDoInput(true);
 			connection1.setRequestMethod("GET"); 
 			connection1.setRequestProperty("Authorization","Bearer "+access_token);
 			connection1.setRequestProperty("Host","api.att.com");
-//			connection1.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
 			connection1.setRequestProperty("Accept","application/json");
 			connection1.connect();
 
 			System.out.println(">>>>>>>>>> Getting location with the access token"); 
 			System.out.println("           "+locationURL.toString());
-
-//			connection1.setRequestProperty("Content-length",String.valueOf(body.length())); 
-			//Send request      
-//			DataOutputStream wr1 = new DataOutputStream (connection1.getOutputStream ());			
-//			wr1.writeBytes (body);      
-//			wr1.flush ();      
-//			wr1.close ();
-			
 			System.out.println(">>>>>>>>>> Resp Code:"+connection1.getResponseCode()); 
 			System.out.println(">>>>>>>>>> Resp Message:"+ connection1.getResponseMessage()); 
 
@@ -144,18 +133,18 @@ public class TokenManager extends HttpServlet {
 			while ((inputLine1 = in1.readLine()) != null) {
 				out.println(inputLine1);
 				if (inputLine1.contains("latitude")) {
-					latitude = inputLine1.split(":")[2];
+					latitude = inputLine1.split(":")[1];
 				}
 				if (inputLine1.contains("longitude")) {
-					longitude = inputLine1.split(":")[2];				
+					longitude = inputLine1.split(":")[1];				
 				}				
 				System.out.println(">>>>>>>>>> Resp Body:"+ inputLine1);
 				System.out.println(">>>>>>>>>> Now, redirecting to the JSP page: http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude);
 			}
 			if (latitude!=null && longitude!=null) {
+				System.out.println(">>>>>>>>>> Now, redirecting to the JSP page: http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude);
 				String url = "http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude;
 			    response.sendRedirect(url);
-
 			}				
 				
 			
