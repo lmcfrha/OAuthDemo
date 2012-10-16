@@ -131,7 +131,7 @@ public class TokenManager extends HttpServlet {
 			String latitude=null;
 			String longitude=null;
 			while ((inputLine1 = in1.readLine()) != null) {
-//				out.println(inputLine1);
+				out.println(inputLine1);
 				if (inputLine1.contains("latitude")) {
 					latitude = inputLine1.split("\"")[2];
 				}
