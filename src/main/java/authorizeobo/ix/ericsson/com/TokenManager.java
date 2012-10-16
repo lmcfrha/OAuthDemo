@@ -131,7 +131,7 @@ public class TokenManager extends HttpServlet {
 			String latitude=null;
 			String longitude=null;
 			while ((inputLine1 = in1.readLine()) != null) {
-				out.println(inputLine1);
+//				out.println(inputLine1);
 				if (inputLine1.contains("latitude")) {
 					latitude = inputLine1.split("\"")[2];
 				}
@@ -143,7 +143,7 @@ public class TokenManager extends HttpServlet {
 			if (latitude!=null && longitude!=null) {
 				System.out.println(">>>>>>>>>> Now, redirecting to the JSP page: http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude);
 				String url = "http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude;
-			    response.sendRedirect(url);
+			    response.sendRedirect(response.encodeRedirectURL(url));
 			}				
 				
 			
