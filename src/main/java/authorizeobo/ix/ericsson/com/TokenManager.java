@@ -97,7 +97,7 @@ public class TokenManager extends HttpServlet {
 		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		String inputLine;
 		while ((inputLine = in.readLine()) != null) {
-//			out.println(inputLine);
+			out.println(inputLine);
 			System.out.println(">>>>>>>>>> Resp Body:"+ inputLine); 
 			if (inputLine.contains("access_token")) {
 				String[] access_token_AVP = inputLine.split(":");
@@ -105,8 +105,8 @@ public class TokenManager extends HttpServlet {
 			}
 		}
 		in.close();
-//		out.flush();
-//		out.close();
+		out.flush();
+		out.close();
 		
 		if (access_token != null) {
 			System.out.println(">>>>>>>>>> Resp access_token used in API request:"+access_token);
