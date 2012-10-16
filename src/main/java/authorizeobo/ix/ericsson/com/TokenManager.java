@@ -118,9 +118,9 @@ public class TokenManager extends HttpServlet {
 			connection1.setDoInput(true);
 			connection1.setRequestMethod("GET"); 
 			connection1.setRequestProperty("Authorization","Bearer "+access_token);
-//			connection1.setRequestProperty("Host","api.att.com");
+			connection1.setRequestProperty("Host","api.att.com");
 //			connection1.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
-//			connection1.setRequestProperty("Accept","application/json");
+			connection1.setRequestProperty("Accept","application/json");
 			connection1.connect();
 
 			System.out.println(">>>>>>>>>> Getting location with the access token"); 
