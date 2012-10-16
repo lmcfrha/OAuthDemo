@@ -121,16 +121,17 @@ public class TokenManager extends HttpServlet {
 //			connection1.setRequestProperty("Host","api.att.com");
 //			connection1.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
 //			connection1.setRequestProperty("Accept","application/json");
+			connection1.connect();
 
 			System.out.println(">>>>>>>>>> Getting location with the access token"); 
 			System.out.println("           "+locationURL.toString());
 
 //			connection1.setRequestProperty("Content-length",String.valueOf(body.length())); 
 			//Send request      
-			DataOutputStream wr1 = new DataOutputStream (connection1.getOutputStream ());
-			wr1.writeBytes (body);      
-			wr1.flush ();      
-			wr1.close ();
+//			DataOutputStream wr1 = new DataOutputStream (connection1.getOutputStream ());			
+//			wr1.writeBytes (body);      
+//			wr1.flush ();      
+//			wr1.close ();
 			
 			System.out.println(">>>>>>>>>> Resp Code:"+connection1.getResponseCode()); 
 			System.out.println(">>>>>>>>>> Resp Message:"+ connection1.getResponseMessage()); 
@@ -143,14 +144,10 @@ public class TokenManager extends HttpServlet {
 			while ((inputLine1 = in1.readLine()) != null) {
 				out.println(inputLine1);
 				if (inputLine1.contains("latitude")) {
-					int start = inputLine1.indexOf("<latitude>")+10;
-					int end = inputLine1.indexOf("</latitude>")-1;
-					latitude = inputLine1.substring(start, end);
+					latitude = inputLine1.split(":")[2];
 				}
 				if (inputLine1.contains("longitude")) {
-					int start = inputLine1.indexOf("<longitude>")+11;
-					int end = inputLine1.indexOf("</longitude>")-1;
-					longitude = inputLine1.substring(start, end);					
+					longitude = inputLine1.split(":")[2];				
 				}				
 				System.out.println(">>>>>>>>>> Resp Body:"+ inputLine1);
 				System.out.println(">>>>>>>>>> Now, redirecting to the JSP page: http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude);
