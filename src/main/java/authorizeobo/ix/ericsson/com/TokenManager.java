@@ -47,7 +47,7 @@ public class TokenManager extends HttpServlet {
 
 		
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
+//		PrintWriter out = response.getWriter();
 		String path = request.getContextPath();
 		String query = request.getQueryString();
 		String pathinfo =request.getPathInfo();
@@ -97,7 +97,7 @@ public class TokenManager extends HttpServlet {
 		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		String inputLine;
 		while ((inputLine = in.readLine()) != null) {
-			out.println(inputLine);
+//			out.println(inputLine);
 			System.out.println(">>>>>>>>>> Resp Body:"+ inputLine); 
 			if (inputLine.contains("access_token")) {
 				String[] access_token_AVP = inputLine.split(":");
@@ -105,8 +105,8 @@ public class TokenManager extends HttpServlet {
 			}
 		}
 		in.close();
-		out.flush();
-		out.close();
+//		out.flush();
+//		out.close();
 		
 		if (access_token != null) {
 			System.out.println(">>>>>>>>>> Resp access_token used in API request:"+access_token);
@@ -131,12 +131,12 @@ public class TokenManager extends HttpServlet {
 			String latitude=null;
 			String longitude=null;
 			while ((inputLine1 = in1.readLine()) != null) {
-				out.println(inputLine1);
+//				out.println(inputLine1);
 				if (inputLine1.contains("latitude")) {
-					latitude = inputLine1.split("\"")[2];
+					latitude = inputLine1.split("\"")[3];
 				}
 				if (inputLine1.contains("longitude")) {
-					longitude = inputLine1.split("\"")[2];				
+					longitude = inputLine1.split("\"")[3];				
 				}				
 				System.out.println(">>>>>>>>>> Resp Body:"+ inputLine1);
 			}
