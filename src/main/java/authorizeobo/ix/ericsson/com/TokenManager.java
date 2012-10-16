@@ -114,8 +114,8 @@ public class TokenManager extends HttpServlet {
 			// Get location now that we have a token:
 			URL locationURL = new URL("https://api.att.com/2/devices/location?requestedAccuracy=1000");
 			HttpsURLConnection connection1 = (HttpsURLConnection) locationURL.openConnection();
-			connection1.setDoOutput(true); 
-			connection1.setDoInput(true);
+//			connection1.setDoOutput(true); 
+//			connection1.setDoInput(true);
 			connection1.setRequestMethod("GET"); 
 			connection1.setRequestProperty("Authorization","Bearer "+access_token);
 			connection1.setRequestProperty("Host","api.att.com");
