@@ -51,13 +51,14 @@ public class TokenManager extends HttpServlet {
 		String path = request.getContextPath();
 		String query = request.getQueryString();
 		String pathinfo =request.getPathInfo();
-		if (path != null) System.out.println(">>>>>>>>>> Redirected back to the App with Contect Path - "+path); 
-		if (query != null) System.out.println(">>>>>>>>>> Redirected back to the App with Query String - "+query);  
-		if (pathinfo != null) System.out.println(">>>>>>>>>> Redirected back to the App with Path Info    - "+pathinfo);  
+		if (path != null) System.out.println(">>>>>>>>>> Authorization Server redirected back to the App with Contect Path - "+path); 
+		if (query != null) System.out.println(">>>>>>>>>> Authorization Server redirected back to the App with Query String - "+query);  
+		if (pathinfo != null) System.out.println(">>>>>>>>>> Authorization Server redirected back to the App with Path Info    - "+pathinfo);  
 		
 		String access_token=null;
 		
 		String code=request.getParameter("code");
+		if (code !=null) System.out.println(">>>>>>>>>> Authorization Server redirected back to the App with an Authorization token: "+code);  
 		String mdn=request.getParameter("mdn");
 		String appid=request.getParameter("appid");
 		URL oauthURL = new URL("https://api.att.com/oauth/access_token");
@@ -81,7 +82,7 @@ public class TokenManager extends HttpServlet {
 					"grant_type=authorization_code&"+
 					"code="+code;	
 		}
-		System.out.println(">>>>>>>>>> Getting a token: "+body); 
+		System.out.println(">>>>>>>>>> App must now exchange the Authorization code (Authorization Grant) for an access token at the Authorization server: \n\r"+body); 
 		connection.setRequestProperty("Content-length",String.valueOf(body.length())); 
 		//Send request      
 		DataOutputStream wr = new DataOutputStream (connection.getOutputStream ());
@@ -109,7 +110,7 @@ public class TokenManager extends HttpServlet {
 //		out.close();
 		
 		if (access_token != null) {
-			System.out.println(">>>>>>>>>> Resp access_token used in API request:"+access_token);
+			System.out.println(">>>>>>>>>> The App can now use the access_token in API requests:"+access_token);
 			
 			// Get location now that we have a token:
 			URL locationURL = new URL("https://api.att.com/2/devices/location?requestedAccuracy=1000");
@@ -122,6 +123,7 @@ public class TokenManager extends HttpServlet {
 
 			System.out.println(">>>>>>>>>> Getting location with the access token"); 
 			System.out.println("           "+locationURL.toString());
+			System.out.println("           Authorization: Bearer "+access_token);
 			System.out.println(">>>>>>>>>> Resp Code:"+connection1.getResponseCode()); 
 			System.out.println(">>>>>>>>>> Resp Message:"+ connection1.getResponseMessage()); 
 
@@ -141,7 +143,7 @@ public class TokenManager extends HttpServlet {
 				System.out.println(">>>>>>>>>> Resp Body:"+ inputLine1);
 			}
 			if (latitude!=null && longitude!=null) {
-				System.out.println(">>>>>>>>>> Now, redirecting to the JSP page: http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude);
+				System.out.println(">>>>>>>>>> Now, redirecting to back to eh App JSP page: http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude);
 				String url = "http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude;
 			    response.sendRedirect(response.encodeRedirectURL(url));
 			}				
