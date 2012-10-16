@@ -133,13 +133,12 @@ public class TokenManager extends HttpServlet {
 			while ((inputLine1 = in1.readLine()) != null) {
 				out.println(inputLine1);
 				if (inputLine1.contains("latitude")) {
-					latitude = inputLine1.split(":")[1];
+					latitude = inputLine1.split("\"")[2];
 				}
 				if (inputLine1.contains("longitude")) {
-					longitude = inputLine1.split(":")[1];				
+					longitude = inputLine1.split("\"")[2];				
 				}				
 				System.out.println(">>>>>>>>>> Resp Body:"+ inputLine1);
-				System.out.println(">>>>>>>>>> Now, redirecting to the JSP page: http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude);
 			}
 			if (latitude!=null && longitude!=null) {
 				System.out.println(">>>>>>>>>> Now, redirecting to the JSP page: http://authorizeobo-ericssonsandbox.rhcloud.com/FindMyLocation.jsp?latitude="+latitude+"&longitude="+longitude);
