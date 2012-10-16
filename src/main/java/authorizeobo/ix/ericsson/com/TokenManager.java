@@ -92,7 +92,7 @@ public class TokenManager extends HttpServlet {
 		wr.close ();
 		
 		System.out.println(">>>>>>>>>> Resp Code:"+connection.getResponseCode()); 
-		System.out.println(">>>>>>>>>> Resp Message:"+ connection.getResponseMessage()); 
+		System.out.println(">>>>>>>>>> Resp Message:"+connection.getResponseMessage()); 
 
 		connection.setReadTimeout(10000);
 		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -120,6 +120,7 @@ public class TokenManager extends HttpServlet {
 			connection1.setRequestProperty("Host","api.att.com");
 			connection1.setRequestProperty("Accept","application/json");
 			connection1.connect();
+			connection1.setReadTimeout(10000);
 
 			System.out.println(">>>>>>>>>> Getting location with the access token"); 
 			System.out.println("           "+locationURL.toString());
@@ -127,13 +128,11 @@ public class TokenManager extends HttpServlet {
 			System.out.println(">>>>>>>>>> Resp Code:"+connection1.getResponseCode()); 
 			System.out.println(">>>>>>>>>> Resp Message:"+ connection1.getResponseMessage()); 
 
-			connection1.setReadTimeout(10000);
 			BufferedReader in1 = new BufferedReader(new InputStreamReader(connection1.getInputStream()));
 			String inputLine1;
 			String latitude=null;
 			String longitude=null;
 			while ((inputLine1 = in1.readLine()) != null) {
-//				out.println(inputLine1);
 				if (inputLine1.contains("latitude")) {
 					latitude = inputLine1.split("\"")[3];
 				}
