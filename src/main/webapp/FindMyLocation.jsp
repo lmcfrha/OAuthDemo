@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>FIND MY LOCATION APPLICATION AKA authorizeobo</title>
+<title>FIND MY LOCATION APPLICATION aka authorizeobo</title>
 </head>
 
 
@@ -22,7 +22,7 @@ if (request.getParameter("operator")!=null) {
 	}
 }
 %>
-<center><b>AUTHORIZEOBO APPLICATION: finding your location</b><br></center>
+<center><b>AUTHORIZEOBO APPLICATION : finding your location</b><br></center>
 <br><div id="carrierSelection">
 In OAuth terminology: <br>
 - AUTHORIZEOBO is the CLIENT<br>
